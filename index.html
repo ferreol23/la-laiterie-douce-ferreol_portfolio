@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>La Laiterie Douce — Yaourts fermiers faits main</title>
+  <meta name="description" content="Maison laitière artisanale : yaourts fermiers faits main en petites fournées, lait de ferme et fruits de saison. Livraison ou retrait.">
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="La Laiterie Douce — Yaourts fermiers faits main">
+  <meta property="og:description" content="Faits main en petites fournées, avec du lait de ferme et des fruits de saison.">
+  <meta name="theme-color" content="#292524">
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 160'%3E%3Cpath d='M28 40h64l-3 98q-.5 8-9 8H40q-8.5 0-9-8z' fill='%23fff'/%3E%3Cpath d='M33 52h54l-2 84q-.5 7-8 7H43q-7.6 0-8-7z' fill='%23A16207'/%3E%3Crect x='30' y='30' width='60' height='12' rx='3' fill='%23292524'/%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="announce">
+    <div class="wrap announce-inner">
+      <span>Fournée du samedi, commande jusqu'au jeudi</span>
+      <span class="announce-sep" aria-hidden="true"></span>
+      <span>Livraison offerte dès <span data-free-from>20,00 €</span></span>
+    </div>
+  </div>
+
+  <header class="header" id="haut">
+    <div class="wrap header-inner">
+      <a href="#haut" class="wordmark" data-shop-name>La Laiterie Douce</a>
+      <nav class="nav" id="nav" aria-label="Navigation principale">
+        <a href="#catalogue">Nos yaourts</a>
+        <a href="#etapes">De la ferme au pot</a>
+        <a href="#maison">La maison</a>
+        <a href="#questions">Questions</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <div class="header-actions">
+        <button class="cart-trigger" id="open-cart" type="button" aria-label="Ouvrir le panier">
+          <svg viewBox="0 0 24 24" width="19" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-count" id="cart-count" aria-live="polite">0</span>
+        </button>
+        <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="nav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+    <div class="scroll-progress" aria-hidden="true"><span id="scroll-progress"></span></div>
+  </header>
+
+  <main>
+    <!-- HERO : la couleur suit le parfum affiché -->
+    <section class="hero grain" id="hero">
+      <div class="wrap hero-inner">
+        <div class="hero-text">
+          <p class="eyebrow" data-hero-in>La maison laitière</p>
+          <h1 class="hero-title" data-split>Le yaourt, comme on le faisait à la ferme.</h1>
+          <p class="hero-lead" data-hero-in>Du lait de ferme collecté le matin, des fruits de saison et des ferments. Chaque fournée est préparée à la main, la veille de la livraison.</p>
+          <div class="hero-actions" data-hero-in>
+            <a href="#catalogue" class="btn btn-solid">Composer mon panier</a>
+            <a href="#etapes" class="btn btn-ghost">Comment on le fait</a>
+          </div>
+        </div>
+
+        <div class="hero-stage" id="hero-stage" role="region" aria-roledescription="carrousel" aria-label="Parfums du moment" data-hero-in>
+          <svg class="hero-blob" viewBox="0 0 500 500" aria-hidden="true">
+            <path class="blob-fill" d="M255 38C372 34 466 128 462 246C458 368 362 458 244 462C128 466 36 372 40 252C44 134 138 42 255 38Z"/>
+            <path class="blob-line" d="M255 38C372 34 466 128 462 246C458 368 362 458 244 462C128 466 36 372 40 252C44 134 138 42 255 38Z" transform="translate(250 250) rotate(14) scale(1.05) translate(-250 -250)"/>
+          </svg>
+          <div class="hero-jar" id="hero-jar" aria-hidden="true"></div>
+          <div class="hero-caption" id="hero-caption" aria-live="off"></div>
+          <div class="hero-controls">
+            <button type="button" class="round-btn" id="hero-prev" aria-label="Parfum précédent">
+              <svg viewBox="0 0 24 24" width="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m15 18-6-6 6-6"/></svg>
+            </button>
+            <div class="hero-dots" id="hero-dots"></div>
+            <button type="button" class="round-btn" id="hero-next" aria-label="Parfum suivant">
+              <svg viewBox="0 0 24 24" width="18" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="m9 18 6-6-6-6"/></svg>
+            </button>
+            <button type="button" class="round-btn" id="hero-play" aria-label="Mettre en pause le défilement des parfums" aria-pressed="false">
+              <svg class="i-pause" viewBox="0 0 24 24" width="16" aria-hidden="true" fill="currentColor"><rect x="6" y="5" width="4" height="14" rx="1"/><rect x="14" y="5" width="4" height="14" rx="1"/></svg>
+              <svg class="i-play" viewBox="0 0 24 24" width="16" aria-hidden="true" fill="currentColor"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.5-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5Z"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Bande défilante des parfums -->
+    <div class="marquee" aria-hidden="true">
+      <div class="marquee-track" id="marquee-track"></div>
+    </div>
+
+    <!-- Manifeste : images glissées dans la phrase -->
+    <section class="manifesto">
+      <div class="wrap">
+        <p class="manifesto-text" id="manifesto">
+          Du lait de <span class="nowrap">ferme <span class="pill-img pill-milk"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M8 2h8"/><path d="M9 2v2.8a4 4 0 0 1-.7 2.2L7.2 8.6A4 4 0 0 0 6.5 11v9a2 2 0 0 0 2 2h7a2 2 0 0 0 2-2v-9a4 4 0 0 0-.7-2.4L15.7 7a4 4 0 0 1-.7-2.2V2"/><path d="M6.5 14h11"/></svg></span>,</span>
+          des fruits de <span class="nowrap">saison <span class="pill-img pill-fruit"><svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="15" cy="22" r="7" fill="#a8324a"/><circle cx="25" cy="19" r="6" fill="#c2415a"/><circle cx="21" cy="28" r="5.5" fill="#8f2a3f"/><path d="M20 13c2-4 6-5 9-4-1 3-4 5-9 4Z" fill="#5b7d3a"/></svg></span></span>
+          et beaucoup de <span class="nowrap">patience <span class="pill-img pill-time"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>.</span>
+          Rien d'autre.
+        </p>
+      </div>
+    </section>
+
+    <!-- De la ferme au pot : le pot se remplit au fil du scroll -->
+    <section class="story grain" id="etapes">
+      <div class="wrap story-inner">
+        <div class="story-stage">
+          <div class="story-jar" id="story-jar" aria-hidden="true">
+            <svg viewBox="0 0 120 160" role="img" aria-hidden="true">
+              <defs>
+                <clipPath id="jar-clip"><path d="M33 50 L87 50 L85.4 138 Q85 144 78 144 L42 144 Q35 144 34.6 138 Z"/></clipPath>
+              </defs>
+              <rect x="30" y="22" width="60" height="16" rx="3" fill="#292524"/>
+              <rect x="30" y="34" width="60" height="3" fill="#a16207"/>
+              <path d="M28 42 Q28 38 32 38 L88 38 Q92 38 92 42 L90 140 Q89.5 149 81 149 L39 149 Q30.5 149 30 140 Z" fill="#ffffff" stroke="#ddd8cf" stroke-width="1.4"/>
+              <g clip-path="url(#jar-clip)">
+                <rect id="story-fill" x="30" y="50" width="60" height="100" fill="#eeaab5"/>
+                <g id="story-berries">
+                  <circle cx="49" cy="58" r="4.5" fill="#a8324a" opacity=".85"/>
+                  <circle cx="66" cy="55" r="3.6" fill="#a8324a" opacity=".8"/>
+                  <circle cx="58" cy="63" r="3" fill="#a8324a" opacity=".75"/>
+                </g>
+              </g>
+              <rect x="40" y="96" width="40" height="30" rx="2" fill="#fbfaf7"/>
+              <line x1="47" y1="105" x2="73" y2="105" stroke="#a16207" stroke-width="1.6" stroke-linecap="round"/>
+              <line x1="49" y1="112" x2="71" y2="112" stroke="#d6d1c7" stroke-width="1.6" stroke-linecap="round"/>
+              <line x1="52" y1="118" x2="68" y2="118" stroke="#d6d1c7" stroke-width="1.6" stroke-linecap="round"/>
+              <rect x="36" y="54" width="4" height="80" rx="2" fill="rgba(255,255,255,.6)"/>
+            </svg>
+          </div>
+          <ol class="steps-nav" id="steps-nav" aria-label="Étapes de fabrication">
+            <li class="is-active">Le lait</li>
+            <li>La patience</li>
+            <li>Le fruit</li>
+          </ol>
+        </div>
+
+        <div class="story-chapters" id="story-chapters">
+          <header class="story-head">
+            <p class="eyebrow">De la ferme au pot</p>
+            <h2 class="section-title">Trois étapes, aucun raccourci</h2>
+          </header>
+          <article class="chapter">
+            <p class="chapter-num">Étape 1</p>
+            <h3>Le lait du matin</h3>
+            <p>Collecté à l'aube chez des éleveurs voisins, il arrive à la laiterie encore frais. Jamais de poudre de lait, jamais de lait reconstitué.</p>
+          </article>
+          <article class="chapter">
+            <p class="chapter-num">Étape 2</p>
+            <h3>Une nuit de patience</h3>
+            <p>On ajoute les ferments, puis on laisse le temps faire. Le lait prend doucement, à son rythme : c'est ce qui donne cette texture épaisse et ce goût franc.</p>
+          </article>
+          <article class="chapter">
+            <p class="chapter-num">Étape 3</p>
+            <h3>Le fruit, puis le pot</h3>
+            <p>Les fruits de saison sont préparés à la main, puis les pots en verre sont remplis un à un. Ils partent en livraison dès le lendemain.</p>
+            <a href="#catalogue" class="btn btn-solid chapter-cta">Goûter la fournée</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- CATALOGUE -->
+    <section class="section" id="catalogue">
+      <div class="wrap">
+        <header class="section-head">
+          <p class="eyebrow">Au comptoir</p>
+          <h2 class="section-title">Notre sélection du moment</h2>
+          <p class="section-lead">Composez votre panier parfum par parfum. Les prix sont indiqués par pot.</p>
+        </header>
+
+        <div class="featured" id="featured"></div>
+
+        <div class="filters" id="filters" role="group" aria-label="Filtrer par catégorie"></div>
+        <div class="catalogue" id="product-grid"></div>
+      </div>
+    </section>
+
+    <!-- MAISON -->
+    <section class="section maison grain" id="maison">
+      <div class="wrap maison-inner">
+        <div class="maison-visual" aria-hidden="true">
+          <svg class="maison-blob" viewBox="0 0 500 500"><path d="M255 38C372 34 466 128 462 246C458 368 362 458 244 462C128 466 36 372 40 252C44 134 138 42 255 38Z"/></svg>
+          <div id="maison-jar"></div>
+        </div>
+        <div class="maison-text">
+          <p class="eyebrow">La maison</p>
+          <h2 class="section-title">Une petite laiterie, beaucoup de patience</h2>
+          <p>Tout a commencé avec une yaourtière et l'envie de retrouver le yaourt d'autrefois : épais, franc, avec le goût de la crème. Aujourd'hui, nous travaillons toujours en petites fournées, préparées la veille de la livraison.</p>
+          <ul class="maison-list">
+            <li>Préparés la veille, livrés au plus frais</li>
+            <li>Recettes courtes, ingrédients que vous reconnaissez</li>
+            <li>Verre consigné : rapportez vos pots, nous les relavons</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- AVIS -->
+    <section class="section avis" id="avis">
+      <div class="wrap avis-inner">
+        <p class="eyebrow">Leurs mots</p>
+        <figure class="quote-lead">
+          <blockquote>La texture du grec est bluffante, épaisse et à peine sucrée. Nous avons arrêté d'en acheter en supermarché.</blockquote>
+          <figcaption>Camille, Lyon</figcaption>
+        </figure>
+        <div class="quote-row">
+          <figure class="quote">
+            <blockquote>La fraise des bois, mes enfants en réclament tous les matins.</blockquote>
+            <figcaption>Karim, Villeurbanne</figcaption>
+          </figure>
+          <figure class="quote">
+            <blockquote>Le système de pots consignés est malin, et la coco végétale est une merveille.</blockquote>
+            <figcaption>Sophie, Caluire</figcaption>
+          </figure>
+        </div>
+        <p class="footnote">Témoignages d'exemple, à remplacer par ceux de vos vrais clients.</p>
+      </div>
+    </section>
+
+    <!-- QUESTIONS -->
+    <section class="section questions" id="questions">
+      <div class="wrap questions-inner">
+        <header class="section-head center">
+          <p class="eyebrow">Bon à savoir</p>
+          <h2 class="section-title">Vos questions</h2>
+        </header>
+        <div class="faq">
+          <details>
+            <summary>Comment se passe une commande ?<span class="chev" aria-hidden="true"></span></summary>
+            <p>Vous composez votre panier, puis vous renseignez votre nom et votre adresse. Un récapitulatif s'ouvre dans WhatsApp : vous nous l'envoyez, et nous confirmons votre commande dans la journée.</p>
+          </details>
+          <details>
+            <summary>Comment payer ?<span class="chev" aria-hidden="true"></span></summary>
+            <p>Le paiement se fait à la livraison ou au retrait, en espèces ou par virement. Aucune coordonnée bancaire n'est demandée sur le site.</p>
+          </details>
+          <details>
+            <summary>Combien coûte la livraison ?<span class="chev" aria-hidden="true"></span></summary>
+            <p>La livraison coûte <span data-delivery-fee>3,00 €</span>, et elle est offerte dès <span data-free-from>20,00 €</span> d'achat. Le retrait sur place est toujours gratuit.</p>
+          </details>
+          <details>
+            <summary>Combien de temps se conservent les yaourts ?<span class="chev" aria-hidden="true"></span></summary>
+            <p>Environ quinze jours au réfrigérateur. La date limite est inscrite sur chaque pot.</p>
+          </details>
+          <details>
+            <summary>Y a-t-il des allergènes ?<span class="chev" aria-hidden="true"></span></summary>
+            <p>Nos yaourts contiennent du lait. Les recettes végétales contiennent des fruits à coque (amande, coco). La liste complète des ingrédients est disponible sur demande.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section class="section contact" id="contact">
+      <div class="wrap contact-inner">
+        <div class="contact-text">
+          <p class="eyebrow">Parlons-en</p>
+          <h2 class="section-title">Une envie, une question ?</h2>
+          <p>Nous répondons en général dans la journée, du mardi au samedi.</p>
+          <a class="btn btn-solid" id="contact-wa" href="#" target="_blank" rel="noopener">Nous écrire sur WhatsApp</a>
+        </div>
+        <address class="contact-info">
+          <div>
+            <p class="contact-label">La boutique</p>
+            <p>12 rue des Prés<br>00000 Votre-Ville</p>
+          </div>
+          <div>
+            <p class="contact-label">Horaires</p>
+            <p>Mardi à samedi<br>9 h – 18 h</p>
+          </div>
+        </address>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="wrap footer-inner">
+      <span class="footer-mark" data-shop-name>La Laiterie Douce</span>
+      <span class="footer-note">© <span id="year"></span> — Site d'exemple, à personnaliser</span>
+    </div>
+  </footer>
+
+  <!-- Barre panier collée en bas (mobile) -->
+  <div class="mobile-bar" id="mobile-bar" hidden>
+    <button type="button" class="btn btn-solid btn-block" id="mobile-bar-btn">
+      Voir le panier <span class="mb-badge" id="mb-count">0</span> <span id="mb-total">0,00 €</span>
+    </button>
+  </div>
+
+  <!-- PANIER -->
+  <div class="overlay" id="overlay" hidden></div>
+  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true">
+    <div class="drawer-head">
+      <h2 id="drawer-title">Votre panier</h2>
+      <button type="button" class="drawer-close" id="close-cart" aria-label="Fermer le panier">
+        <svg viewBox="0 0 24 24" width="20" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+
+    <div class="drawer-body" id="view-cart">
+      <ul class="cart-list" id="cart-list"></ul>
+      <div class="cart-empty" id="cart-empty">
+        <p>Votre panier est vide pour l'instant.</p>
+        <button type="button" class="btn btn-ghost" id="empty-browse">Découvrir les yaourts</button>
+      </div>
+    </div>
+    <div class="drawer-foot" id="foot-cart">
+      <div class="progress" id="progress" aria-hidden="true">
+        <div class="progress-bar"><span id="progress-fill"></span></div>
+      </div>
+      <p class="free-hint" id="free-hint"></p>
+      <dl class="totals">
+        <div><dt>Sous-total</dt><dd id="subtotal">0,00 €</dd></div>
+        <div><dt>Livraison</dt><dd id="delivery-line">—</dd></div>
+        <div class="total-row"><dt>Total</dt><dd id="total">0,00 €</dd></div>
+      </dl>
+      <button class="btn btn-solid btn-block" id="go-checkout" type="button">Passer commande</button>
+    </div>
+
+    <form class="drawer-body checkout" id="view-checkout" novalidate hidden>
+      <button type="button" class="back-link" id="back-cart">Retour au panier</button>
+      <h3>Vos informations</h3>
+      <label>Nom complet
+        <input type="text" name="name" autocomplete="name" required>
+        <span class="field-error" data-error-for="name"></span>
+      </label>
+      <label>Téléphone
+        <input type="tel" name="phone" autocomplete="tel" inputmode="tel" required>
+        <span class="field-error" data-error-for="phone"></span>
+      </label>
+      <fieldset>
+        <legend>Réception</legend>
+        <label class="radio"><input type="radio" name="mode" value="livraison" checked> Livraison à domicile</label>
+        <label class="radio"><input type="radio" name="mode" value="retrait"> Retrait sur place (gratuit)</label>
+      </fieldset>
+      <label id="address-field">Adresse de livraison
+        <textarea name="address" rows="2" autocomplete="street-address"></textarea>
+        <span class="field-error" data-error-for="address"></span>
+      </label>
+      <label>Remarque (facultatif)
+        <textarea name="note" rows="2" placeholder="Créneau souhaité, code d'accès…"></textarea>
+      </label>
+      <p class="pay-note">Paiement à la réception. Aucun paiement en ligne n'est demandé.</p>
+      <div class="checkout-total">Total à payer <strong id="checkout-total">0,00 €</strong></div>
+      <button class="btn btn-solid btn-block" type="submit">Envoyer ma commande sur WhatsApp</button>
+    </form>
+
+    <div class="drawer-body done" id="view-done" hidden>
+      <div class="done-mark" aria-hidden="true">
+        <svg viewBox="0 0 52 52" width="52"><circle cx="26" cy="26" r="24" fill="none" stroke="#A16207" stroke-width="1.6"/><path d="M16 27l7 7 13-14" fill="none" stroke="#A16207" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>Merci pour votre commande</h3>
+      <p>WhatsApp s'est ouvert avec le récapitulatif. Il ne reste qu'à appuyer sur « Envoyer » pour nous le transmettre.</p>
+      <p>Rien ne s'ouvre ? <a id="done-link" href="#" target="_blank" rel="noopener">Ouvrir le message</a>.</p>
+      <button class="btn btn-solid" id="done-close" type="button">Fermer</button>
+    </div>
+  </aside>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/Flip.min.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
