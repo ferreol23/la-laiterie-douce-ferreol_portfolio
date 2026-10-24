@@ -32,4 +32,4 @@ Dans `index.html`, remplacez aussi les avis clients d'exemple, l'adresse et les 
 | `index.html` | Structure de la page |
 | `style.css` | Couleurs, polices et mise en page |
 | `app.js` | Produits, panier, commande WhatsApp et animations |
-| `releases/` | Notes de chaque version |
+| `releases/` | Notes de chaque version et historique (`releases/README.md`) |
