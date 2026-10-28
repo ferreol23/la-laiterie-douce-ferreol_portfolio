@@ -1,0 +1,5 @@
+# Fichiers que Cloudflare ne doit pas mettre en ligne
+.git
+.assetsignore
+README.md
+releases
