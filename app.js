@@ -8,9 +8,6 @@ const CONFIG = {
   freeDeliveryFrom: 20       // livraison offerte à partir de ce montant
 };
 
-/* Parfums montrés dans le grand carrousel du haut (ids de PRODUCTS) */
-const HERO_FLAVORS = ["fraise", "vanille", "myrtille"];
-
 const CATEGORIES = [
   { id: "tous", label: "Tous" },
   { id: "classique", label: "Classiques" },
@@ -20,21 +17,23 @@ const CATEGORIES = [
   { id: "boire", label: "À boire" }
 ];
 
-/* Produits. fill = couleur du yaourt, fruit = couleur des morceaux,
-   tint = couleur de fond de la carte (une couleur par parfum). */
+/* Produits. La photo de chaque produit est images/<id>.jpg
+   (ex. images/fraise.jpg) : remplacez le fichier pour changer la photo.
+   tint = couleur de fond affichée tant que la photo manque.
+   tag (facultatif) = petite mention au-dessus du nom. */
 const PRODUCTS = [
-  { id: "nature",   name: "Nature onctueux",       cat: "classique", price: 0.8, format: "125 g",  fill: "#f4efe2", fruit: null,      tint: "#efece4", desc: "Le classique de la maison, lisse et délicatement acidulé." },
-  { id: "vanille",  name: "Vanille de Madagascar", cat: "classique", price: 1.1, format: "125 g",  fill: "#f2e2b0", fruit: "#7a5a24", tint: "#f5ecd3", tag: "Populaire", desc: "Parfumé aux gousses de vanille, grains visibles." },
-  { id: "fraise",   name: "Fraise des bois",       cat: "fruits",    price: 1.2, format: "125 g",  fill: "#eeaab5", fruit: "#a8324a", tint: "#f7dce2", tag: "Populaire", desc: "Des morceaux de fraises fondants, juste ce qu'il faut de sucre." },
-  { id: "mangue",   name: "Mangue passion",        cat: "fruits",    price: 1.3, format: "125 g",  fill: "#f4c76e", fruit: "#c47a12", tint: "#fbe9c6", desc: "Un soleil exotique, doux et légèrement acidulé." },
-  { id: "myrtille", name: "Myrtille sauvage",      cat: "fruits",    price: 1.3, format: "125 g",  fill: "#b4a7cf", fruit: "#54447f", tint: "#e5e0f1", desc: "Riche en fruit, une couleur profonde et naturelle." },
-  { id: "grecnat",  name: "Grec nature",           cat: "grec",      price: 1.5, format: "150 g",  fill: "#f7f4ec", fruit: null,      tint: "#e9edf1", desc: "Épais et crémeux, naturellement riche en protéines." },
-  { id: "grecmiel", name: "Grec miel & noix",      cat: "grec",      price: 1.8, format: "150 g",  fill: "#e8c26a", fruit: "#8a5e1c", tint: "#f4e6c4", desc: "Miel de fleurs et éclats de noix torréfiées." },
-  { id: "coco",     name: "Coco végétal",          cat: "vegetal",   price: 1.5, format: "125 g",  fill: "#e9efe5", fruit: "#6fa889", tint: "#e1eee6", tag: "Nouveau", desc: "Cent pour cent végétal, fondant et gourmand." },
-  { id: "amande",   name: "Amande vanille",        cat: "vegetal",   price: 1.5, format: "125 g",  fill: "#e5d1ae", fruit: "#9a7444", tint: "#f1e5d2", desc: "Une recette végétale à l'amande, sans lait." },
-  { id: "boirefr",  name: "Yaourt à boire fraise", cat: "boire",     price: 1.9, format: "250 ml", fill: "#eea0b1", fruit: "#a8324a", tint: "#f9dbe3", desc: "Pour le petit-déjeuner ou la pause gourmande, à emporter." },
-  /* Coffret : mis en avant au-dessus du catalogue (hors filtres) */
-  { id: "coffret",  name: "Coffret découverte",    cat: "coffret",   price: 9.9, format: "6 pots", fill: "#a16207", fruit: null,      tint: "#f4ead6", desc: "Six parfums choisis au fil de la fournée : de quoi faire le tour de la maison et trouver vos préférés. Une jolie idée à offrir." }
+  { id: "nature",   name: "Nature onctueux",       cat: "classique", price: 0.8, format: "125 g",  tint: "#ebe6dc", desc: "Le classique de la maison, lisse et délicatement acidulé." },
+  { id: "vanille",  name: "Vanille de Madagascar", cat: "classique", price: 1.1, format: "125 g",  tint: "#efe5cc", tag: "Le plus demandé", desc: "Parfumé aux gousses de vanille, grains visibles." },
+  { id: "fraise",   name: "Fraise des bois",       cat: "fruits",    price: 1.2, format: "125 g",  tint: "#f0dcdc", tag: "Le plus demandé", desc: "Des morceaux de fraises fondants, juste ce qu'il faut de sucre." },
+  { id: "mangue",   name: "Mangue passion",        cat: "fruits",    price: 1.3, format: "125 g",  tint: "#f1e2c4", desc: "Doux et légèrement acidulé, avec un coulis de fruits." },
+  { id: "myrtille", name: "Myrtille sauvage",      cat: "fruits",    price: 1.3, format: "125 g",  tint: "#e2dde8", desc: "Riche en fruit, une couleur profonde et naturelle." },
+  { id: "grecnat",  name: "Grec nature",           cat: "grec",      price: 1.5, format: "150 g",  tint: "#e7e5e0", desc: "Épais et crémeux, naturellement riche en protéines." },
+  { id: "grecmiel", name: "Grec miel et noix",     cat: "grec",      price: 1.8, format: "150 g",  tint: "#efe1c6", desc: "Miel de fleurs et éclats de noix torréfiées." },
+  { id: "coco",     name: "Coco végétal",          cat: "vegetal",   price: 1.5, format: "125 g",  tint: "#e3e8e1", tag: "Nouveau", desc: "Cent pour cent végétal, fondant et gourmand." },
+  { id: "amande",   name: "Amande vanille",        cat: "vegetal",   price: 1.5, format: "125 g",  tint: "#ece2d3", desc: "Une recette végétale à l'amande, sans lait." },
+  { id: "boirefr",  name: "Yaourt à boire fraise", cat: "boire",     price: 1.9, format: "250 ml", tint: "#f2dee0", desc: "Pour le petit-déjeuner ou la pause, à emporter." },
+  /* Coffret : présenté dans sa propre section, hors filtres */
+  { id: "coffret",  name: "Coffret découverte",    cat: "coffret",   price: 9.9, format: "6 pots", tint: "#e3dccf", desc: "Six parfums choisis dans la fournée de la semaine, dans une caisse en bois. De quoi faire le tour de la maison, ou l'offrir." }
 ];
 
 /* ============================================================
@@ -45,53 +44,26 @@ const $$ = (sel, root = document) => [...root.querySelectorAll(sel)];
 const euro = n => n.toLocaleString("fr-FR", { style: "currency", currency: "EUR" });
 const byId = id => PRODUCTS.find(p => p.id === id);
 const clamp = (n, a, b) => Math.max(a, Math.min(b, n));
+const photoOf = p => `images/${p.id}.jpg`;
 const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const hasGsap = !!window.gsap;
 const hasFlip = hasGsap && !!window.Flip;
 
-/* Pot en verre : couvercle sombre cerclé d'or, étiquette minimale */
-function jarSvg(fill, fruit, size = 104) {
-  const berries = fruit
-    ? `<circle cx="49" cy="58" r="4.5" fill="${fruit}" opacity=".85"/>
-       <circle cx="66" cy="55" r="3.6" fill="${fruit}" opacity=".8"/>
-       <circle cx="58" cy="63" r="3" fill="${fruit}" opacity=".75"/>`
-    : "";
-  return `<svg viewBox="0 0 120 160" width="${size}" role="img" aria-hidden="true">
-    <rect x="30" y="22" width="60" height="16" rx="3" fill="#292524"/>
-    <rect x="30" y="34" width="60" height="3" fill="#a16207"/>
-    <path d="M28 42 Q28 38 32 38 L88 38 Q92 38 92 42 L90 140 Q89.5 149 81 149 L39 149 Q30.5 149 30 140 Z"
-          fill="#ffffff" stroke="#ddd8cf" stroke-width="1.4"/>
-    <path d="M33 50 L87 50 L85.4 138 Q85 144 78 144 L42 144 Q35 144 34.6 138 Z" fill="${fill}"/>
-    <ellipse cx="60" cy="50" rx="27" ry="4" fill="rgba(255,255,255,.55)"/>
-    ${berries}
-    <rect x="40" y="96" width="40" height="30" rx="2" fill="#fbfaf7"/>
-    <line x1="47" y1="105" x2="73" y2="105" stroke="#a16207" stroke-width="1.6" stroke-linecap="round"/>
-    <line x1="49" y1="112" x2="71" y2="112" stroke="#d6d1c7" stroke-width="1.6" stroke-linecap="round"/>
-    <line x1="52" y1="118" x2="68" y2="118" stroke="#d6d1c7" stroke-width="1.6" stroke-linecap="round"/>
-    <rect x="36" y="54" width="4" height="80" rx="2" fill="rgba(255,255,255,.6)"/>
-  </svg>`;
+/* Photo manquante : on affiche un fond coloré avec le nom à la place */
+function markMissing(img) {
+  const fig = img.closest(".photo");
+  if (fig) fig.classList.add("is-missing");
+}
+document.addEventListener("error", e => { if (e.target.tagName === "IMG") markMissing(e.target); }, true);
+function checkPhotos(root = document) {
+  $$(".photo img", root).forEach(img => { if (img.complete && img.naturalWidth === 0) markMissing(img); });
 }
 
-/* Coffret : boîte crème, ruban or, trois pots */
-function coffretSvg(size = 270) {
-  const pot = (x, fill) => `
-    <g transform="translate(${x},14)">
-      <rect x="2" y="0" width="28" height="8" rx="2" fill="#292524"/>
-      <rect x="2" y="6" width="28" height="2" fill="#a16207"/>
-      <path d="M0 12 Q0 9 3 9 L29 9 Q32 9 32 12 L30 60 Q29.7 65 25 65 L7 65 Q2.3 65 2 60 Z" fill="#fff" stroke="#ddd8cf" stroke-width="1"/>
-      <path d="M3 18 L29 18 L27.6 57 Q27.4 61 23 61 L9 61 Q4.6 61 4.4 57 Z" fill="${fill}"/>
-    </g>`;
-  return `<svg viewBox="0 0 230 150" width="${size}" role="img" aria-hidden="true">
-    ${pot(42, "#eeaab5")}${pot(99, "#f2e2b0")}${pot(156, "#b4a7cf")}
-    <path d="M16 70 L214 70 L204 136 Q203 142 196 142 L34 142 Q27 142 26 136 Z" fill="#f4ead6"/>
-    <path d="M16 70 L214 70 L212 80 L18 80 Z" fill="#e6d6b4"/>
-    <rect x="107" y="70" width="16" height="72" fill="#a16207"/>
-    <path d="M115 98 q-16 -14 -26 -4 q8 10 26 4 q16 -14 26 -4 q-8 10 -26 4" fill="#c58a1e"/>
-    <circle cx="115" cy="98" r="5" fill="#854d0e"/>
-  </svg>`;
+function photoFigure(p, cls, alt) {
+  return `<figure class="photo ${cls}" style="--tint:${p.tint}" data-label="${p.name}">
+    <img src="${photoOf(p)}" alt="${alt}" width="1000" height="1250" loading="lazy">
+  </figure>`;
 }
-
-const sparkSvg = `<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2c1 5 5 9 10 10-5 1-9 5-10 10-1-5-5-9-10-10 5-1 9-5 10-10Z" fill="currentColor"/></svg>`;
 
 /* ============================================================
    PANIER (mémorisé dans le navigateur)
@@ -134,7 +106,6 @@ function removeItem(id) { delete cart[id]; afterCartChange(); }
    CATALOGUE
    ============================================================ */
 let activeCat = "tous";
-const catLabel = id => (CATEGORIES.find(c => c.id === id) || {}).label || "";
 const shopProducts = PRODUCTS.filter(p => p.cat !== "coffret");
 
 function buyControl(p) {
@@ -159,23 +130,6 @@ function updateBuySlots() {
   }
 }
 
-function renderFeatured() {
-  const p = byId("coffret");
-  $("#featured").innerHTML = `
-    <article class="coffret">
-      <div class="coffret-art">${coffretSvg()}</div>
-      <div class="coffret-body">
-        <p class="coffret-tag">Idée cadeau</p>
-        <h3>${p.name}</h3>
-        <p class="coffret-desc">${p.desc}</p>
-        <div class="coffret-foot">
-          <span class="price">${euro(p.price)} <small>/ ${p.format}</small></span>
-          <div data-buy="${p.id}">${buyControl(p)}</div>
-        </div>
-      </div>
-    </article>`;
-}
-
 function renderFilters() {
   const count = id => id === "tous" ? shopProducts.length : shopProducts.filter(p => p.cat === id).length;
   $("#filters").innerHTML = CATEGORIES.map(c =>
@@ -185,19 +139,38 @@ function renderFilters() {
 
 function renderGrid() {
   $("#product-grid").innerHTML = shopProducts.map(p => `
-    <article class="product" data-cat="${p.cat}" data-flip-id="${p.id}">
-      ${p.tag ? `<span class="badge">${p.tag}</span>` : ""}
-      <div class="product-art" style="--tint:${p.tint}">${jarSvg(p.fill, p.fruit)}</div>
-      <div class="product-body">
-        <span class="product-cat">${catLabel(p.cat)}</span>
+    <article class="product" data-cat="${p.cat}">
+      ${photoFigure(p, "product-media", `Pot de yaourt ${p.name.toLowerCase()}`)}
+      <div class="product-info">
+        ${p.tag ? `<p class="product-tag">${p.tag}</p>` : ""}
         <h3>${p.name}</h3>
         <p class="product-desc">${p.desc}</p>
-        <div class="product-foot">
-          <span class="price">${euro(p.price)} <small>/ ${p.format}</small></span>
+        <div class="product-buy">
+          <span class="price">${euro(p.price)}<small>${p.format}</small></span>
           <div data-buy="${p.id}">${buyControl(p)}</div>
         </div>
       </div>
     </article>`).join("");
+}
+
+function renderCoffret() {
+  const p = byId("coffret");
+  $("#featured").innerHTML = `
+    ${photoFigure(p, "coffret-media", "Caisse en bois contenant six pots de yaourt de parfums différents")}
+    <div class="coffret-text">
+      <p class="coffret-tag">À offrir ou à partager</p>
+      <h2 class="section-title">${p.name}</h2>
+      <p class="coffret-desc">${p.desc}</p>
+      <ul class="coffret-list">
+        <li>Six pots de 125 g, parfums variés</li>
+        <li>Caisse en bois réutilisable</li>
+        <li>Pots en verre consignés</li>
+      </ul>
+      <div class="coffret-buy">
+        <span class="price">${euro(p.price)}</span>
+        <div data-buy="${p.id}">${buyControl(p)}</div>
+      </div>
+    </div>`;
 }
 
 /* Filtrage animé avec GSAP Flip : les cartes glissent à leur nouvelle place */
@@ -207,14 +180,13 @@ function applyFilter(cat) {
   const grid = $("#product-grid");
   const cards = $$(".product", grid);
   const state = hasFlip && !reduceMotion ? Flip.getState(cards) : null;
-  // Hauteur figée pendant l'animation : la section suivante ne remonte pas sur les cartes qui partent
   if (state) grid.style.minHeight = grid.offsetHeight + "px";
   cards.forEach(c => { c.style.display = cat === "tous" || c.dataset.cat === cat ? "" : "none"; });
   if (!state) return;
   Flip.from(state, {
-    duration: .55, ease: "power2.inOut", scale: true, absolute: true,
-    onEnter: els => gsap.fromTo(els, { opacity: 0, scale: .9 }, { opacity: 1, scale: 1, duration: .45, delay: .1 }),
-    onLeave: els => gsap.to(els, { opacity: 0, scale: .9, duration: .3 }),
+    duration: .6, ease: "power2.inOut", absolute: true,
+    onEnter: els => gsap.fromTo(els, { opacity: 0 }, { opacity: 1, duration: .4, delay: .15 }),
+    onLeave: els => gsap.to(els, { opacity: 0, duration: .25 }),
     onComplete: () => {
       grid.style.minHeight = "";
       if (window.ScrollTrigger) ScrollTrigger.refresh();
@@ -231,24 +203,24 @@ function renderCart() {
   $("#cart-empty").hidden = ids.length > 0;
   $("#cart-list").innerHTML = ids.map(id => {
     const p = byId(id), q = cart[id];
-    const art = id === "coffret" ? coffretSvg(40) : jarSvg(p.fill, p.fruit, 30);
     return `<li class="cart-item">
-      <div class="cart-thumb" style="--tint:${p.tint}">${art}</div>
+      ${photoFigure(p, "cart-thumb", "")}
       <div>
         <strong>${p.name}</strong>
         <small>${euro(p.price)} · ${p.format}</small>
-        <div class="qty">
+        <div class="stepper" role="group" aria-label="Quantité de ${p.name}">
           <button type="button" data-dec="${id}" aria-label="Retirer un ${p.name}">−</button>
           <span>${q}</span>
           <button type="button" data-inc="${id}" aria-label="Ajouter un ${p.name}">+</button>
         </div>
       </div>
-      <div>
-        <div class="line-total">${euro(p.price * q)}</div>
+      <div class="cart-side">
+        <span class="line-total">${euro(p.price * q)}</span>
         <button type="button" class="remove" data-remove="${id}">Retirer</button>
       </div>
     </li>`;
   }).join("");
+  checkPhotos($("#cart-list"));
 
   const sub = subtotal();
   const fee = deliveryCost("livraison");
@@ -257,13 +229,12 @@ function renderCart() {
   $("#total").textContent = euro(ids.length ? sub + fee : 0);
   $("#go-checkout").disabled = ids.length === 0;
 
-  const pct = clamp(Math.round(sub / CONFIG.freeDeliveryFrom * 100), 0, 100);
   const free = sub >= CONFIG.freeDeliveryFrom;
   $("#progress").hidden = ids.length === 0;
-  $("#progress-fill").style.width = pct + "%";
+  $("#progress-fill").style.width = clamp(sub / CONFIG.freeDeliveryFrom * 100, 0, 100) + "%";
   $("#progress").classList.toggle("is-full", free);
   $("#free-hint").textContent = !ids.length ? "" :
-    free ? "La livraison vous est offerte." : `Plus que ${euro(CONFIG.freeDeliveryFrom - sub)} pour la livraison offerte`;
+    free ? "La livraison vous est offerte." : `Plus que ${euro(CONFIG.freeDeliveryFrom - sub)} pour la livraison offerte.`;
 
   updateCheckoutTotal();
 }
@@ -281,200 +252,54 @@ function updateMobileBar() {
 }
 
 /* ============================================================
-   HERO : CARROUSEL DE PARFUMS (la couleur suit le parfum)
-   Contrôles précédent / suivant / pause ; arrêt au survol, au focus,
-   hors écran, et pas de défilement automatique si mouvement réduit.
+   FABRICATION : la grande photo suit l'étape lue
    ============================================================ */
-const hero = $("#hero"), heroStage = $("#hero-stage"), heroJar = $("#hero-jar"),
-      heroCaption = $("#hero-caption"), heroDots = $("#hero-dots"), heroPlay = $("#hero-play");
-const SLIDE_SECONDS = 5.5;
-let heroIdx = 0, heroPlaying = hasGsap && !reduceMotion, heroHold = false, heroVisible = true, heroTween = null;
-
-function heroCaptionHTML(p) {
-  return `<p class="flavor-tag">Parfum du moment</p>
-    <h2>${p.name}</h2>
-    <p>${p.desc}</p>
-    <div class="buy-row">
-      <span class="price">${euro(p.price)} <small>/ ${p.format}</small></span>
-      <button type="button" class="btn btn-solid btn-sm" data-add="${p.id}">Ajouter au panier</button>
-    </div>`;
-}
-
-function renderHeroDots() {
-  heroDots.innerHTML = HERO_FLAVORS.map((id, i) =>
-    `<button type="button" class="hero-dot" data-slide="${i}" aria-label="Afficher ${byId(id).name}"><span><i></i></span></button>`
-  ).join("");
-}
-function updateHeroDots() {
-  $$(".hero-dot", heroDots).forEach((d, i) => {
-    if (i === heroIdx) d.setAttribute("aria-current", "true"); else d.removeAttribute("aria-current");
-    const bar = d.querySelector("i");
-    if (hasGsap) gsap.set(bar, { scaleX: i === heroIdx && !heroPlaying ? 1 : 0 });
-  });
-}
-
-function runHeroTimer() {
-  if (heroTween) heroTween.kill();
-  heroTween = null;
-  if (!heroPlaying) return;
-  const bar = heroDots.querySelector('[aria-current="true"] i');
-  heroTween = gsap.fromTo(bar, { scaleX: 0 }, {
-    scaleX: 1, duration: SLIDE_SECONDS, ease: "none",
-    onComplete: () => showFlavor(heroIdx + 1, 1)
-  });
-  if (heroHold || !heroVisible) heroTween.pause();
-}
-
-function showFlavor(i, dir = 1, opts = {}) {
-  const n = HERO_FLAVORS.length;
-  heroIdx = (i + n) % n;
-  const p = byId(HERO_FLAVORS[heroIdx]);
-  hero.style.setProperty("--tint", p.tint);
-  if (opts.user) heroCaption.setAttribute("aria-live", "polite");
-  updateHeroDots();
-
-  const swap = () => { heroJar.innerHTML = jarSvg(p.fill, p.fruit, 230); heroCaption.innerHTML = heroCaptionHTML(p); };
-  if (hasGsap && !reduceMotion && !opts.instant) {
-    gsap.timeline()
-      .to(heroJar, { opacity: 0, y: -22, rotation: -6 * dir, duration: .28, ease: "power2.in" })
-      .to(heroCaption, { opacity: 0, y: -10, duration: .22, ease: "power2.in" }, "<")
-      .add(swap)
-      .fromTo(heroJar, { opacity: 0, y: 30, rotation: 6 * dir }, { opacity: 1, y: 0, rotation: 0, duration: .7, ease: "back.out(1.7)" })
-      .fromTo(heroCaption, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: .45, ease: "power2.out" }, "<.08");
-  } else {
-    swap();
-  }
-  if (hasGsap) runHeroTimer();
-}
-
-function setHeroPlaying(on) {
-  heroPlaying = on && hasGsap;
-  heroPlay.setAttribute("aria-pressed", String(!heroPlaying));
-  heroCaption.setAttribute("aria-live", heroPlaying ? "off" : "polite");
-  updateHeroDots();
-  runHeroTimer();
-}
-function holdHero(on) {
-  heroHold = on;
-  if (!heroTween) return;
-  if (on || !heroVisible) heroTween.pause(); else heroTween.resume();
+function initSteps() {
+  const steps = $$(".step");
+  const photos = $$(".steps-photo");
+  if (!steps.length || !("IntersectionObserver" in window)) return;
+  document.documentElement.classList.add("js-steps");
+  const setStep = i => {
+    steps.forEach(s => s.classList.toggle("is-active", Number(s.dataset.step) === i));
+    photos.forEach(ph => ph.classList.toggle("is-active", Number(ph.dataset.step) === i));
+  };
+  setStep(0);
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => { if (entry.isIntersecting) setStep(Number(entry.target.dataset.step)); });
+  }, { rootMargin: "-45% 0px -45% 0px" });
+  steps.forEach(s => io.observe(s));
 }
 
 /* ============================================================
-   BANDE DÉFILANTE + MANIFESTE
+   ANIMATIONS (GSAP) — sobres : une entrée au chargement,
+   les produits qui apparaissent, le filtrage. Rien si
+   mouvement réduit ou si GSAP n'a pas chargé.
    ============================================================ */
-function renderMarquee() {
-  const items = shopProducts.map(p => `<span class="marquee-item">${p.name}${sparkSvg}</span>`).join("");
-  $("#marquee-track").innerHTML = reduceMotion ? items : items + items; // doublé pour une boucle sans couture
-}
-
-/* Découpe le manifeste en mots ; entre dans les groupes .nowrap,
-   laisse les images rondes intactes */
-function splitManifesto(el) {
-  [...el.childNodes].forEach(node => {
-    if (node.nodeType === Node.ELEMENT_NODE) {
-      if (node.classList.contains("nowrap")) splitManifesto(node);
-      return;
-    }
-    if (node.nodeType !== Node.TEXT_NODE) return;
-    const frag = document.createDocumentFragment();
-    node.textContent.split(/(\s+)/).forEach(part => {
-      if (!part) return;
-      if (/^\s+$/.test(part)) { frag.append(" "); return; }
-      const w = document.createElement("span");
-      w.className = "w"; w.textContent = part;
-      frag.append(w);
-    });
-    node.replaceWith(frag);
-  });
-}
 function splitWords(el) {
   el.innerHTML = el.textContent.trim().split(/\s+/)
     .map(w => `<span class="word" style="display:inline-block">${w}</span>`).join(" ");
 }
-
-/* ============================================================
-   ANIMATIONS GSAP (réglages UI/UX Pro Max)
-   - Hero : un seul moment orchestré au chargement
-   - Parallaxe : décor uniquement (yPercent ≤ 15), jamais le texte
-   - Scrub : lié au scroll (scrub 0.6 à 0.8)
-   - Pas d'épinglage : la colonne du pot est en position sticky (CSS)
-   - Mouvement réduit : tout reste dans son état final lisible
-   ============================================================ */
 function initMotion() {
   if (!hasGsap || reduceMotion) return;
-  if (window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
   if (window.Flip) gsap.registerPlugin(Flip);
 
   const title = $("[data-split]");
   splitWords(title);
-  splitManifesto($("#manifesto"));
-
-  const intro = gsap.timeline({ defaults: { ease: "expo.out" } });
-  intro.from("#hero .eyebrow", { opacity: 0, y: 12, duration: .5 })
-    .from(title.querySelectorAll(".word"), { opacity: 0, y: 28, duration: .8, stagger: .05 }, "-=.25")
-    .from(".hero-lead, .hero-actions", { opacity: 0, y: 14, duration: .6, stagger: .08 }, "-=.55")
-    .from(".hero-stage", { opacity: 0, y: 24, duration: .9 }, "<-.3");
+  gsap.timeline({ defaults: { ease: "power3.out" } })
+    .from(".hero-media img", { scale: 1.06, duration: 1.6, ease: "power2.out" })
+    .from(title.querySelectorAll(".word"), { opacity: 0, y: 24, duration: .8, stagger: .06 }, "<.2")
+    .from("[data-hero]", { opacity: 0, y: 12, duration: .6, stagger: .1 }, "-=.45");
 
   if (!window.ScrollTrigger) return;
-  const mm = gsap.matchMedia();
-
-  mm.add("(min-width: 0px)", () => {
-    gsap.to(".hero-blob", { yPercent: 12, rotation: 10, ease: "none",
-      scrollTrigger: { trigger: "#hero", start: "top top", end: "bottom top", scrub: true } });
-
-    gsap.fromTo("#manifesto .w", { opacity: .16 }, { opacity: 1, ease: "none", stagger: .1,
-      scrollTrigger: { trigger: "#manifesto", start: "top 82%", end: "bottom 45%", scrub: .6 } });
-    gsap.from("#manifesto .pill-img", { scale: .3, rotation: -25, ease: "back.out(2)", stagger: .15,
-      scrollTrigger: { trigger: "#manifesto", start: "top 80%", end: "center 55%", scrub: .6 } });
-
-    ScrollTrigger.batch(".product", {
-      start: "top 90%", once: true,
-      onEnter: els => gsap.from(els, { opacity: 0, y: 16, duration: .5, ease: "power2.out", stagger: .07, clearProps: "opacity,transform" })
-    });
-
-    gsap.to(".maison-blob", { rotation: 24, yPercent: -8, ease: "none",
-      scrollTrigger: { trigger: "#maison", start: "top bottom", end: "bottom top", scrub: true } });
+  gsap.registerPlugin(ScrollTrigger);
+  ScrollTrigger.batch(".product", {
+    start: "top 92%", once: true,
+    onEnter: els => gsap.from(els, { opacity: 0, y: 14, duration: .6, ease: "power2.out", stagger: .08, clearProps: "opacity,transform" })
   });
-
-  /* Le pot se remplit et le fond change à chaque étape (grand écran) */
-  mm.add("(min-width: 901px)", () => {
-    const steps = $$("#steps-nav li");
-    const setStep = progress => {
-      const idx = progress < .36 ? 0 : progress < .7 ? 1 : 2;
-      steps.forEach((li, i) => li.classList.toggle("is-active", i === idx));
-    };
-    gsap.set("#etapes", { backgroundColor: "#e9edf1" });
-    gsap.set("#story-fill", { attr: { y: 144 }, fill: "#e6e1d3" });
-    gsap.set("#story-berries", { opacity: 0, y: 14 });
-
-    gsap.timeline({
-      scrollTrigger: { trigger: "#story-chapters", start: "top 55%", end: "bottom 75%", scrub: .8, onUpdate: self => setStep(self.progress) }
-    })
-      .to("#story-fill", { attr: { y: 100 }, duration: 1, ease: "none" })
-      .to("#etapes", { backgroundColor: "#f5ecd3", duration: .6, ease: "none" })
-      .to("#story-fill", { attr: { y: 62 }, fill: "#f4efe2", duration: 1, ease: "none" }, "<")
-      .to("#etapes", { backgroundColor: "#f7dce2", duration: .6, ease: "none" })
-      .to("#story-fill", { attr: { y: 50 }, fill: "#eeaab5", duration: .8, ease: "none" }, "<")
-      .to("#story-berries", { opacity: 1, y: 0, duration: .5, ease: "none" });
-
-    return () => steps.forEach((li, i) => li.classList.toggle("is-active", i === 0));
+  gsap.from(".coffret-media img", {
+    scale: 1.08, ease: "none",
+    scrollTrigger: { trigger: ".coffret", start: "top bottom", end: "bottom top", scrub: true }
   });
-
-  document.fonts && document.fonts.ready.then(() => ScrollTrigger.refresh());
-}
-
-/* Progression de lecture (barre dorée sous l'en-tête) */
-function initScrollProgress() {
-  const bar = $("#scroll-progress");
-  let ticking = false;
-  const update = () => {
-    const max = document.documentElement.scrollHeight - innerHeight;
-    bar.style.transform = `scaleX(${max > 0 ? clamp(scrollY / max, 0, 1) : 0})`;
-    ticking = false;
-  };
-  addEventListener("scroll", () => { if (!ticking) { ticking = true; requestAnimationFrame(update); } }, { passive: true });
-  update();
 }
 
 /* ============================================================
@@ -530,7 +355,7 @@ function buildMessage(data) {
     ...lines,
     "",
     `Sous-total : ${euro(subtotal())}`,
-    `${data.mode === "retrait" ? "Retrait sur place" : "Livraison"} : ${fee === 0 ? "gratuit" : euro(fee)}`,
+    `${data.mode === "retrait" ? "Retrait à la boutique" : "Livraison"} : ${fee === 0 ? "gratuit" : euro(fee)}`,
     `Total : ${euro(subtotal() + fee)} (paiement à la réception)`,
     "",
     `Nom : ${data.name}`,
@@ -571,7 +396,7 @@ function showToast(msg) {
   toastTimer = setTimeout(() => t.classList.remove("show"), 1800);
 }
 function bumpCount() {
-  const c = $("#cart-count");
+  const c = $(".cart-count");
   c.classList.remove("bump"); void c.offsetWidth; c.classList.add("bump");
 }
 function wireBuyClicks(container) {
@@ -593,7 +418,6 @@ $("#filters").addEventListener("click", e => {
 });
 wireBuyClicks($("#product-grid"));
 wireBuyClicks($("#featured"));
-wireBuyClicks(heroCaption);
 $("#cart-list").addEventListener("click", e => {
   const t = e.target.closest("button");
   if (!t) return;
@@ -602,30 +426,12 @@ $("#cart-list").addEventListener("click", e => {
   else if (t.dataset.remove) removeItem(t.dataset.remove);
 });
 
-/* Carrousel du hero */
-$("#hero-prev").addEventListener("click", () => showFlavor(heroIdx - 1, -1, { user: true }));
-$("#hero-next").addEventListener("click", () => showFlavor(heroIdx + 1, 1, { user: true }));
-heroDots.addEventListener("click", e => {
-  const d = e.target.closest("[data-slide]");
-  if (!d) return;
-  const i = Number(d.dataset.slide);
-  if (i !== heroIdx) showFlavor(i, i > heroIdx ? 1 : -1, { user: true });
-});
-heroPlay.addEventListener("click", () => setHeroPlaying(!heroPlaying));
-heroStage.addEventListener("mouseenter", () => holdHero(true));
-heroStage.addEventListener("mouseleave", () => holdHero(heroStage.contains(document.activeElement)));
-heroStage.addEventListener("focusin", () => holdHero(true));
-heroStage.addEventListener("focusout", e => { if (!heroStage.contains(e.relatedTarget)) holdHero(heroStage.matches(":hover")); });
-if ("IntersectionObserver" in window) {
-  new IntersectionObserver(([entry]) => { heroVisible = entry.isIntersecting; holdHero(heroHold); }, { threshold: .2 }).observe(hero);
-}
-
 $("#open-cart").addEventListener("click", openCart);
 $("#mobile-bar-btn").addEventListener("click", openCart);
 $("#close-cart").addEventListener("click", closeCart);
 overlay.addEventListener("click", closeCart);
 $("#done-close").addEventListener("click", closeCart);
-$("#empty-browse").addEventListener("click", () => { closeCart(); $("#catalogue").scrollIntoView(); });
+$("#empty-browse").addEventListener("click", () => { closeCart(); $("#yaourts").scrollIntoView(); });
 document.addEventListener("keydown", e => {
   if (e.key === "Escape" && drawer.classList.contains("open")) closeCart();
   trapFocus(e);
@@ -672,16 +478,12 @@ document.querySelectorAll("[data-delivery-fee]").forEach(el => { el.textContent 
 document.querySelectorAll("[data-free-from]").forEach(el => { el.textContent = euro(CONFIG.freeDeliveryFrom); });
 $("#contact-wa").href = `https://wa.me/${CONFIG.whatsapp}`;
 $("#year").textContent = new Date().getFullYear();
-$("#maison-jar").innerHTML = jarSvg("#f4efe2", null, 250);
 
-renderMarquee();
-renderFeatured();
 renderFilters();
 renderGrid();
+renderCoffret();
 renderCart();
 updateMobileBar();
-renderHeroDots();
-setHeroPlaying(heroPlaying);
-showFlavor(0, 1, { instant: true });
-initScrollProgress();
+checkPhotos();
+initSteps();
 initMotion();
