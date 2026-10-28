@@ -11,3 +11,4 @@ Chaque version du site est envoyée sur GitHub avec une étiquette (par exemple 
 | v1.1.0 | 28/10/2026 | Nouvelle direction artistique « Crèmerie », 15 photos réalistes générées par IA, mise en ligne sur GitHub Pages | [v1.1.0.md](v1.1.0.md) |
 | v1.1.1 | 28/10/2026 | Mise en ligne sur Cloudflare, fichiers internes non publiés | [v1.1.1.md](v1.1.1.md) |
 | v1.1.2 | 28/10/2026 | Mention « site exemple » en bas de page, Cloudflare mis en pause | [v1.1.2.md](v1.1.2.md) |
+| v1.1.3 | 28/10/2026 | Fichier de vérification Google Search Console | [v1.1.3.md](v1.1.3.md) |

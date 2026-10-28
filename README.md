@@ -51,5 +51,6 @@ Chaque photo porte une petite mention « Généré par IA ». Quand toutes les p
 | `index.html` | Structure de la page |
 | `style.css` | Couleurs, polices et mise en page |
 | `app.js` | Produits, panier, commande WhatsApp et animations |
+| `google5e66d4aaf4b7df47.html` | Vérification Google Search Console (ne pas supprimer ni renommer) |
 | `images/` | Photos des produits, de l'accueil, du coffret et des étapes |
 | `releases/` | Notes de chaque version et historique (`releases/README.md`) |
