@@ -197,6 +197,7 @@ button { font: inherit; color: inherit; }
 .footer { padding: 32px 0; font-size: .85rem; color: var(--ink-2); }
 .footer-inner { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
 .footer-mark { font-family: var(--serif); font-size: 1.1rem; color: var(--ink); }
+.footer-note { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--line); text-align: center; font-family: var(--serif); font-size: 1rem; color: var(--ink); }
 
 /* ---------- Barre panier (téléphone) ---------- */
 .mobile-bar { display: none; }

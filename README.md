@@ -4,10 +4,8 @@ Site de vente de yaourts fermiers faits main : catalogue, panier et commande env
 
 En ligne :
 
-- https://la-laiterie-douce-ferreol-portfolio.koffiferreol32.workers.dev (Cloudflare)
-- https://ferreol23.github.io/la-laiterie-douce-ferreol_portfolio/ (GitHub Pages)
-
-Les deux se mettent à jour tout seuls à chaque envoi sur la branche `main`. Le fichier `.assetsignore` liste ce que Cloudflare ne doit pas publier (dossier `.git`, README, notes de version).
+- https://ferreol23.github.io/la-laiterie-douce-ferreol_portfolio/ (GitHub Pages, mis à jour tout seul à chaque envoi sur la branche `main`)
+- Cloudflare : **en pause** depuis le 28/10/2026 (adresse `la-laiterie-douce-ferreol-portfolio.koffiferreol32.workers.dev` coupée et publication automatique désactivée). Pour le rallumer : dans le projet Cloudflare, onglet « Domains », réactiver l'adresse, puis dans « Settings > Builds », décocher « Disable builds ». Le fichier `.assetsignore` liste ce que Cloudflare ne doit pas publier (dossier `.git`, README, notes de version).
 
 Site statique en HTML, CSS et JavaScript, sans installation ni étape de compilation. Les animations utilisent [GSAP](https://gsap.com) (ScrollTrigger et Flip), chargé depuis cdnjs.
 
