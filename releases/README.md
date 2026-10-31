@@ -15,3 +15,4 @@ Chaque version du site est envoyée sur GitHub avec une étiquette (par exemple 
 | v1.1.4 | 31/10/2026 | Plan du site (sitemap) et adresse officielle pour Google | [v1.1.4.md](v1.1.4.md) |
 | v1.1.5 | 31/10/2026 | Chasse aux bugs : livraison offerte à 20 €, panier au clavier, panier fermé masqué, panier mémorisé nettoyé | [v1.1.5.md](v1.1.5.md) |
 | v1.1.6 | 31/10/2026 | Deuxième chasse aux bugs : retour au panier, page qui sautait, messages d'erreur du formulaire | [v1.1.6.md](v1.1.6.md) |
+| v1.1.7 | 31/10/2026 | Troisième chasse aux bugs : produits bloqués transparents, panier vidé pendant la commande, page valide W3C | [v1.1.7.md](v1.1.7.md) |

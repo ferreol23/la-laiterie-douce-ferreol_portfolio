@@ -15,7 +15,7 @@
   <meta property="og:image" content="https://ferreol23.github.io/la-laiterie-douce-ferreol_portfolio/images/accueil.jpg">
   <meta name="theme-color" content="#23407a">
 
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%2323407a'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-family='Georgia,serif' font-size='17' fill='%23f6f3ee'%3ELD%3C/text%3E%3C/svg%3E">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2032%2032'%3E%3Crect%20width='32'%20height='32'%20rx='6'%20fill='%2323407a'/%3E%3Ctext%20x='16'%20y='22'%20text-anchor='middle'%20font-family='Georgia,serif'%20font-size='17'%20fill='%23f6f3ee'%3ELD%3C/text%3E%3C/svg%3E">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -179,10 +179,10 @@
           <p>Nous répondons dans la journée, du mardi au samedi.</p>
           <a class="btn btn-light" id="contact-wa" href="#" target="_blank" rel="noopener">Nous écrire sur WhatsApp</a>
         </div>
-        <address class="contact-info">
-          <div><h3>Boutique</h3><p>12 rue des Prés<br>00000 Votre-Ville</p></div>
+        <div class="contact-info">
+          <div><h3>Boutique</h3><address>12 rue des Prés<br>00000 Votre-Ville</address></div>
           <div><h3>Horaires</h3><p>Mardi au samedi<br>9 h à 18 h</p></div>
-        </address>
+        </div>
       </div>
     </section>
   </main>
@@ -204,7 +204,7 @@
 
   <!-- PANIER -->
   <div class="overlay" id="overlay" hidden></div>
-  <aside class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true">
+  <div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-labelledby="drawer-title" aria-hidden="true">
     <div class="drawer-head">
       <h2 id="drawer-title">Votre panier</h2>
       <button type="button" class="drawer-close" id="close-cart">Fermer</button>
@@ -262,7 +262,7 @@
       <p>Rien ne s'ouvre ? <a class="link" id="done-link" href="#" target="_blank" rel="noopener">Ouvrir le message</a></p>
       <button class="btn btn-primary" id="done-close" type="button">Fermer</button>
     </div>
-  </aside>
+  </div>
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 

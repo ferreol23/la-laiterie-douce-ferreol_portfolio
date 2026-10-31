@@ -193,6 +193,9 @@ function applyFilter(cat) {
   $$(".chip").forEach(c => c.setAttribute("aria-pressed", String(c.dataset.cat === cat)));
   const grid = $("#product-grid");
   const cards = $$(".product", grid);
+  /* Une animation d'apparition encore en cours serait coupée par le filtrage et laisserait
+     des cartes à moitié transparentes : on la termine d'abord */
+  if (hasGsap) gsap.getTweensOf(cards).forEach(t => t.progress(1));
   const state = hasFlip && !reduceMotion ? Flip.getState(cards) : null;
   if (state) grid.style.minHeight = grid.offsetHeight + "px";
   cards.forEach(c => { c.style.display = cat === "tous" || c.dataset.cat === cat ? "" : "none"; });
@@ -266,10 +269,16 @@ function renderCart() {
     free ? "La livraison vous est offerte." : `Plus que ${euro(CONFIG.freeDeliveryFrom - sub)} pour la livraison offerte.`;
 
   updateCheckoutTotal();
+
+  /* Panier vidé pendant la commande (par exemple depuis un autre onglet) : on revient au panier vide */
+  if (!ids.length && !$("#view-checkout").hidden) {
+    showView("cart");
+    if (drawer.classList.contains("open")) $("#empty-browse").focus();
+  }
 }
 
 function updateCheckoutTotal() {
-  $("#checkout-total").textContent = euro(subtotal() + deliveryCost(currentMode()));
+  $("#checkout-total").textContent = euro(cartCount() ? subtotal() + deliveryCost(currentMode()) : 0);
 }
 
 function updateMobileBar() {

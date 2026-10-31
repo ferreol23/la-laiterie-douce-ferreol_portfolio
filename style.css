@@ -32,7 +32,7 @@ h1, h2, h3 { margin: 0; font-weight: 400; }
 p, figure, blockquote { margin: 0; }
 a { color: inherit; }
 img { display: block; max-width: 100%; height: auto; }
-button { font: inherit; color: inherit; }
+button { font: inherit; color: inherit; touch-action: manipulation; } /* pas de zoom en tapant vite sur + */
 [hidden] { display: none !important; }
 :focus-visible { outline: 2px solid var(--blue); outline-offset: 3px; }
 
@@ -194,6 +194,7 @@ button { font: inherit; color: inherit; }
 .contact-inner > div > p { margin: 16px 0 32px; color: #cdd6e6; }
 .contact-info { font-style: normal; display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
 .contact-info h3 { font-size: .85rem; font-weight: 500; color: #cdd6e6; margin-bottom: 8px; }
+.contact-info address { font-style: normal; }
 .footer { padding: 32px 0; font-size: .85rem; color: var(--ink-2); }
 .footer-inner { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
 .footer-mark { font-family: var(--serif); font-size: 1.1rem; color: var(--ink); }
