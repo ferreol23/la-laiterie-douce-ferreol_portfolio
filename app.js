@@ -69,15 +69,29 @@ function photoFigure(p, cls, alt) {
    PANIER (mémorisé dans le navigateur)
    ============================================================ */
 const STORAGE_KEY = "laiterie-panier";
-let cart = {};
-try { cart = JSON.parse(localStorage.getItem(STORAGE_KEY)) || {}; } catch { cart = {}; }
-Object.keys(cart).forEach(id => { if (!byId(id) || !(cart[id] > 0)) delete cart[id]; });
+const MAX_QTY = 99;
+
+/* Relit le panier mémorisé en ne gardant que des produits connus et des quantités entières (1 à 99) */
+function readCart() {
+  let saved = null;
+  try { saved = JSON.parse(localStorage.getItem(STORAGE_KEY)); } catch { /* panier illisible : on repart de zéro */ }
+  const clean = {};
+  if (saved && typeof saved === "object" && !Array.isArray(saved)) {
+    Object.entries(saved).forEach(([id, q]) => {
+      q = Math.floor(Number(q));
+      if (byId(id) && q > 0) clean[id] = Math.min(q, MAX_QTY);
+    });
+  }
+  return clean;
+}
+let cart = readCart();
 
 function saveCart() {
   try { localStorage.setItem(STORAGE_KEY, JSON.stringify(cart)); } catch { /* ignoré */ }
 }
 const cartCount = () => Object.values(cart).reduce((a, b) => a + b, 0);
-const subtotal = () => Object.entries(cart).reduce((s, [id, q]) => s + byId(id).price * q, 0);
+/* Calcul en centimes : évite que 20,00 € devienne 19,999… € (et la livraison facturée à tort) */
+const subtotal = () => Object.entries(cart).reduce((s, [id, q]) => s + Math.round(byId(id).price * 100) * q, 0) / 100;
 
 function deliveryCost(mode) {
   if (mode === "retrait") return 0;
@@ -91,12 +105,12 @@ const currentMode = () => {
 function afterCartChange() { saveCart(); renderCart(); updateBuySlots(); updateMobileBar(); }
 
 function addToCart(id) {
-  cart[id] = (cart[id] || 0) + 1;
+  cart[id] = Math.min((cart[id] || 0) + 1, MAX_QTY);
   afterCartChange(); bumpCount();
   showToast(`${byId(id).name} ajouté au panier`);
 }
 function changeQty(id, delta) {
-  cart[id] = (cart[id] || 0) + delta;
+  cart[id] = Math.min((cart[id] || 0) + delta, MAX_QTY);
   if (cart[id] <= 0) delete cart[id];
   afterCartChange();
 }
@@ -199,6 +213,13 @@ function applyFilter(cat) {
    ============================================================ */
 function renderCart() {
   const ids = Object.keys(cart);
+  /* La liste est reconstruite : on retient le bouton qui avait le focus clavier pour le lui rendre */
+  const active = document.activeElement;
+  const activeItem = active && active.closest ? active.closest(".cart-item") : null;
+  const focusAction = activeItem ? ["dec", "inc", "remove"].find(a => active.dataset[a]) : null;
+  const focusId = focusAction ? active.dataset[focusAction] : null;
+  const focusIndex = activeItem ? $$(".cart-item", $("#cart-list")).indexOf(activeItem) : -1;
+
   $("#cart-count").textContent = cartCount();
   $("#cart-empty").hidden = ids.length > 0;
   $("#cart-list").innerHTML = ids.map(id => {
@@ -221,6 +242,14 @@ function renderCart() {
     </li>`;
   }).join("");
   checkPhotos($("#cart-list"));
+  if (focusAction) {
+    const list = $("#cart-list");
+    const same = list.querySelector(`[data-${focusAction}="${focusId}"]`);
+    const items = $$(".cart-item", list);
+    const neighbour = items[Math.min(focusIndex, items.length - 1)];
+    const target = same || (neighbour && neighbour.querySelector("[data-remove]")) || $("#empty-browse");
+    if (target) target.focus();
+  }
 
   const sub = subtotal();
   const fee = deliveryCost("livraison");
@@ -329,7 +358,9 @@ function closeCart() {
   drawer.setAttribute("aria-hidden", "true");
   overlay.hidden = true;
   document.body.style.overflow = "";
-  if (lastFocus && document.contains(lastFocus)) lastFocus.focus();
+  /* La barre « Voir le panier » disparaît si le panier est vidé : on revient alors au bouton Panier du haut */
+  const back = lastFocus && document.contains(lastFocus) && lastFocus.offsetParent !== null ? lastFocus : $("#open-cart");
+  back.focus();
 }
 function trapFocus(e) {
   if (e.key !== "Tab" || !drawer.classList.contains("open")) return;
@@ -434,7 +465,13 @@ $("#done-close").addEventListener("click", closeCart);
 $("#empty-browse").addEventListener("click", () => { closeCart(); $("#yaourts").scrollIntoView(); });
 document.addEventListener("keydown", e => {
   if (e.key === "Escape" && drawer.classList.contains("open")) closeCart();
+  else if (e.key === "Escape" && nav.classList.contains("open")) { closeNav(); burger.focus(); }
   trapFocus(e);
+});
+/* Panier modifié dans un autre onglet : on se met à jour au lieu de l'écraser */
+window.addEventListener("storage", e => {
+  if (e.key !== STORAGE_KEY && e.key !== null) return;
+  cart = readCart(); renderCart(); updateBuySlots(); updateMobileBar();
 });
 
 $("#go-checkout").addEventListener("click", () => { showView("checkout"); updateCheckoutTotal(); $("#view-checkout").name.focus(); });
@@ -461,13 +498,15 @@ form.addEventListener("submit", e => {
   $("#done-close").focus();
 });
 
-const burger = $("#burger"), nav = $("#nav");
+function closeNav() { nav.classList.remove("open"); burger.setAttribute("aria-expanded", "false"); }
 burger.addEventListener("click", () => {
   const open = nav.classList.toggle("open");
   burger.setAttribute("aria-expanded", String(open));
 });
-nav.addEventListener("click", e => {
-  if (e.target.tagName === "A") { nav.classList.remove("open"); burger.setAttribute("aria-expanded", "false"); }
+nav.addEventListener("click", e => { if (e.target.tagName === "A") closeNav(); });
+/* Menu téléphone : se ferme aussi en touchant ailleurs */
+document.addEventListener("click", e => {
+  if (nav.classList.contains("open") && !nav.contains(e.target) && !burger.contains(e.target)) closeNav();
 });
 
 /* ============================================================

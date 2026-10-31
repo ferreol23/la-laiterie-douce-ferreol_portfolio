@@ -13,3 +13,4 @@ Chaque version du site est envoyée sur GitHub avec une étiquette (par exemple 
 | v1.1.2 | 28/10/2026 | Mention « site exemple » en bas de page, Cloudflare mis en pause | [v1.1.2.md](v1.1.2.md) |
 | v1.1.3 | 28/10/2026 | Fichier de vérification Google Search Console | [v1.1.3.md](v1.1.3.md) |
 | v1.1.4 | 31/10/2026 | Plan du site (sitemap) et adresse officielle pour Google | [v1.1.4.md](v1.1.4.md) |
+| v1.1.5 | 31/10/2026 | Chasse aux bugs : livraison offerte à 20 €, panier au clavier, panier fermé masqué, panier mémorisé nettoyé | [v1.1.5.md](v1.1.5.md) |
