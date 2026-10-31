@@ -350,14 +350,14 @@ function openCart() {
   overlay.hidden = false;
   drawer.classList.add("open");
   drawer.setAttribute("aria-hidden", "false");
-  document.body.style.overflow = "hidden";
+  document.documentElement.style.overflow = "hidden";
   $("#close-cart").focus();
 }
 function closeCart() {
   drawer.classList.remove("open");
   drawer.setAttribute("aria-hidden", "true");
   overlay.hidden = true;
-  document.body.style.overflow = "";
+  document.documentElement.style.overflow = "";
   /* La barre « Voir le panier » disparaît si le panier est vidé : on revient alors au bouton Panier du haut */
   const back = lastFocus && document.contains(lastFocus) && lastFocus.offsetParent !== null ? lastFocus : $("#open-cart");
   back.focus();
@@ -397,6 +397,14 @@ function buildMessage(data) {
 }
 const waUrl = text => `https://wa.me/${CONFIG.whatsapp}?text=${encodeURIComponent(text)}`;
 
+/* Affiche (ou efface) le message d'erreur d'un champ, et le signale aux lecteurs d'écran */
+function setFieldError(form, field, message) {
+  const el = form.querySelector(`[data-error-for="${field}"]`);
+  el.textContent = message || "";
+  if (message) form[field].setAttribute("aria-invalid", "true");
+  else form[field].removeAttribute("aria-invalid");
+}
+
 function validate(form) {
   const data = {
     name: form.name.value.trim(),
@@ -409,7 +417,7 @@ function validate(form) {
   if (data.name.length < 2) errors.name = "Indiquez votre nom.";
   if (data.phone.replace(/\D/g, "").length < 8) errors.phone = "Indiquez un numéro de téléphone valide.";
   if (data.mode === "livraison" && data.address.length < 6) errors.address = "Indiquez votre adresse de livraison.";
-  form.querySelectorAll("[data-error-for]").forEach(el => { el.textContent = errors[el.dataset.errorFor] || ""; });
+  form.querySelectorAll("[data-error-for]").forEach(el => setFieldError(form, el.dataset.errorFor, errors[el.dataset.errorFor]));
   const firstBad = Object.keys(errors)[0];
   if (firstBad) form[firstBad].focus();
   return firstBad ? null : data;
@@ -475,14 +483,19 @@ window.addEventListener("storage", e => {
 });
 
 $("#go-checkout").addEventListener("click", () => { showView("checkout"); updateCheckoutTotal(); $("#view-checkout").name.focus(); });
-$("#back-cart").addEventListener("click", () => showView("cart"));
+$("#back-cart").addEventListener("click", () => { showView("cart"); $("#go-checkout").focus(); });
 
 const form = $("#view-checkout");
 form.addEventListener("change", e => {
   if (e.target.name === "mode") {
     $("#address-field").hidden = e.target.value === "retrait";
+    setFieldError(form, "address", "");
     updateCheckoutTotal();
   }
+});
+/* Le message d'erreur disparaît dès que l'on corrige le champ */
+form.addEventListener("input", e => {
+  if (form.querySelector(`[data-error-for="${e.target.name}"]`)) setFieldError(form, e.target.name, "");
 });
 form.addEventListener("submit", e => {
   e.preventDefault();

@@ -232,12 +232,12 @@
       <button type="button" class="back-link" id="back-cart">Retour au panier</button>
       <h3>Vos informations</h3>
       <label>Nom complet
-        <input type="text" name="name" autocomplete="name" required>
-        <span class="field-error" data-error-for="name"></span>
+        <input type="text" name="name" autocomplete="name" required aria-describedby="err-name">
+        <span class="field-error" id="err-name" data-error-for="name"></span>
       </label>
       <label>Téléphone
-        <input type="tel" name="phone" autocomplete="tel" inputmode="tel" required>
-        <span class="field-error" data-error-for="phone"></span>
+        <input type="tel" name="phone" autocomplete="tel" inputmode="tel" required aria-describedby="err-phone">
+        <span class="field-error" id="err-phone" data-error-for="phone"></span>
       </label>
       <fieldset>
         <legend>Réception</legend>
@@ -245,8 +245,8 @@
         <label class="radio"><input type="radio" name="mode" value="retrait"> Retrait à la boutique (gratuit)</label>
       </fieldset>
       <label id="address-field">Adresse de livraison
-        <textarea name="address" rows="2" autocomplete="street-address"></textarea>
-        <span class="field-error" data-error-for="address"></span>
+        <textarea name="address" rows="2" autocomplete="street-address" aria-describedby="err-address"></textarea>
+        <span class="field-error" id="err-address" data-error-for="address"></span>
       </label>
       <label>Remarque (facultatif)
         <textarea name="note" rows="2" placeholder="Créneau souhaité, code d'accès…"></textarea>
